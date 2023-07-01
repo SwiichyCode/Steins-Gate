@@ -1,3 +1,4 @@
+import Button from "../Button";
 import * as S from "./styles";
 
 export default function Hero() {
@@ -10,7 +11,7 @@ export default function Hero() {
         &ldquo;Nous rejoindre&rdquo; et embarque dès maintenant pour des combats
         épiques, des quêtes passionnantes et des camarades de jeu dévoués.
       </p>
-      <button>Nous rejoindre !</button>
+      <Button text="Nous rejoindre" />
     </S.Container>
   );
 }

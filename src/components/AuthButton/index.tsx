@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 
 type Props = {
@@ -6,6 +7,7 @@ type Props = {
   backgroundcolor: string;
   color: string;
   icon?: string;
+  href: string;
 };
 
 const Container = styled.button<{ backgroundcolor: string }, { color: string }>`
@@ -24,6 +26,11 @@ const Container = styled.button<{ backgroundcolor: string }, { color: string }>`
   font-weight: 700;
   background-color: ${({ backgroundcolor }) => backgroundcolor};
   cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: ${({ color }) => color};
+  }
 `;
 
 export default function AuthButton({
@@ -31,11 +38,12 @@ export default function AuthButton({
   icon,
   backgroundcolor,
   color,
+  href,
 }: Props) {
   return (
     <Container backgroundcolor={backgroundcolor} color={color}>
       {icon && <Image src={icon} width={16} height={16} alt="" />}
-      <span>{text}</span>
+      <Link href={href}>{text}</Link>
     </Container>
   );
 }
