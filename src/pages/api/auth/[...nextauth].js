@@ -8,7 +8,7 @@ export default NextAuth({
   session: {
     jwt: true,
   },
-  // nextAuthUrl: process.env.NEXTAUTH_URL,
+
   // Here we add our login providers - this is where you could add Google or Github SSO as well
   providers: [
     CredentialsProvider({
@@ -21,7 +21,7 @@ export default NextAuth({
       },
       // Authorize callback is ran upon calling the signin function
       authorize: async (credentials) => {
-        dbConnect();
+        await dbConnect();
 
         // Try to find the user and also return the password field
         const user = await User.findOne({ email: credentials.email }).select(
