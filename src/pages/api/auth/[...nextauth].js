@@ -12,6 +12,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       name: "credentials",
+
       // The credentials object is what's used to generate Next Auths default login page - We will not use it however.
       credentials: {
         email: { label: "Email", type: "email" },

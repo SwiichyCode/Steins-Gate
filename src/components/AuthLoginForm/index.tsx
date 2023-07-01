@@ -27,8 +27,8 @@ export default function AuthLoginForm() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/",
+      // redirect: true,
+      // callbackUrl: "/",
       email: data.email,
       password: data.password,
     });
