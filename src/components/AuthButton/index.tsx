@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 type Props = {
   text: string;
-  backgroundColor: string;
+  backgroundcolor: string;
   color: string;
   icon?: string;
 };
 
-const Container = styled.button<{ backgroundColor: string }, { color: string }>`
+const Container = styled.button<{ backgroundcolor: string }, { color: string }>`
   width: 131px;
   height: 40px;
   display: flex;
@@ -22,18 +22,18 @@ const Container = styled.button<{ backgroundColor: string }, { color: string }>`
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 700;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
   cursor: pointer;
 `;
 
 export default function AuthButton({
   text,
   icon,
-  backgroundColor,
+  backgroundcolor,
   color,
 }: Props) {
   return (
-    <Container backgroundColor={backgroundColor} color={color}>
+    <Container backgroundcolor={backgroundcolor} color={color}>
       {icon && <Image src={icon} width={16} height={16} alt="" />}
       <span>{text}</span>
     </Container>

@@ -18,6 +18,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/server/utils/dbConnect.js",
+    "src/pages/login.tsx",
+    "src/server/models/user.js"
+  ],
   "exclude": ["node_modules"]
 }

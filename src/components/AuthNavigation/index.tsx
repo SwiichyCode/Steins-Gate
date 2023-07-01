@@ -13,12 +13,12 @@ export default function AuthNavigation() {
       <AuthButton
         text="Inscription"
         // icon="/signup_icon.svg"
-        backgroundColor="#DC143C"
+        backgroundcolor="#DC143C"
         color="#f8f7f9"
       />
       <AuthButton
         text="Connection"
-        backgroundColor="rgba(248, 247, 249, 0.50)"
+        backgroundcolor="rgba(248, 247, 249, 0.50)"
         color="#f8f7f9"
       />
     </Container>
