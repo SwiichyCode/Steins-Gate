@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 import { Input } from "../Input";
 import Button from "../Button";
 
@@ -23,12 +22,9 @@ export default function AuthLoginForm() {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await signIn("credentials", {
-      // redirect: true,
-      // callbackUrl: "/",
       email: data.email,
       password: data.password,
     });
@@ -50,11 +46,7 @@ export default function AuthLoginForm() {
         placeholder="********"
         register={register}
       />
-      <Button
-        text="Se connecter"
-        size="medium"
-        // onClick={() => router.reload()}
-      />
+      <Button text="Se connecter" size="medium" />
     </Form>
   );
 }

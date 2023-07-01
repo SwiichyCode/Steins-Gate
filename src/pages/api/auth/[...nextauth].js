@@ -8,6 +8,7 @@ export default NextAuth({
   session: {
     jwt: true,
   },
+  nextAuthUrl: process.env.NEXTAUTH_URL,
   // Here we add our login providers - this is where you could add Google or Github SSO as well
   providers: [
     CredentialsProvider({
