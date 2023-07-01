@@ -3,15 +3,16 @@ import Link from "next/link";
 import styled from "styled-components";
 
 type Props = {
-  text: string;
+  text?: string;
   backgroundcolor: string;
   color: string;
-  icon?: string;
+  icon?: string | JSX.Element;
   href: string;
+  onClick?: () => void;
 };
 
 const Container = styled.button<{ backgroundcolor: string }, { color: string }>`
-  width: 131px;
+  width: auto;
   height: 40px;
   display: flex;
   align-items: center;
@@ -25,6 +26,7 @@ const Container = styled.button<{ backgroundcolor: string }, { color: string }>`
   font-size: 16px;
   font-weight: 700;
   background-color: ${({ backgroundcolor }) => backgroundcolor};
+  padding: 0 20px;
   cursor: pointer;
 
   a {
@@ -39,11 +41,17 @@ export default function AuthButton({
   backgroundcolor,
   color,
   href,
+  onClick,
 }: Props) {
   return (
-    <Container backgroundcolor={backgroundcolor} color={color}>
-      {icon && <Image src={icon} width={16} height={16} alt="" />}
-      <Link href={href}>{text}</Link>
+    <Container
+      backgroundcolor={backgroundcolor}
+      color={color}
+      onClick={onClick}
+    >
+      <Link href={href}>
+        {text} {icon && icon}
+      </Link>
     </Container>
   );
 }

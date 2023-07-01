@@ -8,6 +8,8 @@ import { useSession, signOut, signIn } from "next-auth/react";
 export default function Home() {
   const { data: session } = useSession();
 
+  console.log(session?.user);
+
   return (
     <HomeLayout>
       <Header />

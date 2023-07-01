@@ -53,7 +53,7 @@ export default function AuthLoginForm() {
       <Button
         text="Se connecter"
         size="medium"
-        onClick={() => router.reload()}
+        // onClick={() => router.reload()}
       />
     </Form>
   );

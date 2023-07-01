@@ -22,6 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "types/**/*.ts",
     "src/server/utils/dbConnect.js",
     "src/pages/login.tsx",
     "src/server/models/user.js"
