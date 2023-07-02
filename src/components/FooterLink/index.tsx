@@ -8,6 +8,11 @@ const Container = styled.footer`
   left: 64px;
   bottom: 64px;
 
+  @media (max-width: 1180px) {
+    left: 32px;
+    bottom: 64px;
+  }
+
   a {
     color: #f8f7f9;
     transition: color 0.2s ease-in-out;

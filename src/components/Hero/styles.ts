@@ -6,6 +6,10 @@ export const Container = styled.section`
   padding: 164px 64px;
   box-sizing: content-box;
 
+  @media (max-width: 1180px) {
+    padding: 164px 32px;
+  }
+
   h1 {
     font-size: 80px;
     color: #dc143c;
