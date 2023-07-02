@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import AuthService from "@/services/auth.service";
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../Input";
@@ -16,6 +17,10 @@ const Form = styled.form`
   }
 `;
 
+const SuccessMessage = styled.p`
+  color: #2edb3d;
+`;
+
 interface AuthInputs {
   pseudo?: string;
   email: string;
@@ -28,6 +33,7 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
     handleSubmit,
     formState: { errors },
   } = useForm<AuthInputs>();
+  const [successMessage, setSuccessMessage] = useState<string>("");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<AuthInputs> = async (data) => {
@@ -35,11 +41,19 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
       if (isRegister) {
         if (data.pseudo) {
           await AuthService.register(data.pseudo, data.email, data.password);
-          router.push("/login");
+          setSuccessMessage("Votre compte a bien été créé");
+
+          setTimeout(() => {
+            router.push("/login");
+          }, 2000);
         }
       } else {
         await AuthService.login(data.email, data.password);
-        console.log("Success login");
+        setSuccessMessage("Vous êtes connecté");
+
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
       }
     } catch (error) {
       console.log(error);
@@ -76,6 +90,8 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
         size="medium"
         type="submit"
       />
+
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
 
       <Link href={isRegister ? "/login" : "/register"}>
         {isRegister
