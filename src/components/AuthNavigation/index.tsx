@@ -1,4 +1,3 @@
-import { useSession, signOut } from "next-auth/react";
 import styled from "styled-components";
 import AuthButton from "../AuthButton";
 import { FaRegUser } from "react-icons/fa";
@@ -11,28 +10,23 @@ const Container = styled.ul`
 `;
 
 export default function AuthNavigation() {
-  const { data: session } = useSession();
-
   return (
     <Container>
-      {!session?.user ? (
-        <>
-          <AuthButton
-            text="Inscription"
-            backgroundcolor="#DC143C"
-            color="#f8f7f9"
-            href="/signup"
-          />
-          <AuthButton
-            text="Connection"
-            backgroundcolor="rgba(248, 247, 249, 0.50)"
-            color="#f8f7f9"
-            href="/login"
-          />
-        </>
-      ) : (
-        <>
-          {session?.user?.role === "admin" && (
+      <AuthButton
+        text="Inscription"
+        backgroundcolor="#DC143C"
+        color="#f8f7f9"
+        href="/register"
+      />
+      <AuthButton
+        text="Connection"
+        backgroundcolor="rgba(248, 247, 249, 0.50)"
+        color="#f8f7f9"
+        href="/login"
+      />
+
+      {/* <>
+           {session?.user?.role === "admin" && (
             <AuthButton
               backgroundcolor="#DC143C"
               color="#f8f7f9"
@@ -54,8 +48,7 @@ export default function AuthNavigation() {
             href="/"
             onClick={() => signOut()}
           />
-        </>
-      )}
+        </> */}
     </Container>
   );
 }

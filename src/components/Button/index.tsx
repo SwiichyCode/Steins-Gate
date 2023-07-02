@@ -1,9 +1,11 @@
+import { type } from "os";
 import styled from "styled-components";
 
 type Props = {
   text: string;
   size?: "small" | "medium" | "large";
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 };
 
 const StyledButton = styled.button<{ size?: "small" | "medium" | "large" }>`
@@ -37,9 +39,9 @@ const StyledButton = styled.button<{ size?: "small" | "medium" | "large" }>`
   }
 `;
 
-export default function Button({ text, size, onClick }: Props) {
+export default function Button({ text, size, onClick, type }: Props) {
   return (
-    <StyledButton size={size} onClick={onClick}>
+    <StyledButton size={size} onClick={onClick} type={type}>
       {text}
     </StyledButton>
   );
