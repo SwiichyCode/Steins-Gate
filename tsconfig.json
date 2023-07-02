@@ -23,9 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "types/**/*.ts",
-    "src/server/utils/dbConnect.js",
-    "src/pages/login.tsx",
-    "src/server/models/user.js"
+    "src/pages/login.tsx"
   ],
   "exclude": ["node_modules"]
 }

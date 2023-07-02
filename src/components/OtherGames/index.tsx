@@ -8,6 +8,10 @@ const Container = styled.div`
   right: 64px;
   z-index: 100;
 
+  @media (max-width: 1430px) {
+    display: none;
+  }
+
   .header {
     width: 100%;
     display: flex;

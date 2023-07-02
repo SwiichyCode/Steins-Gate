@@ -17,6 +17,10 @@ const Container = styled.div`
     height: 100%;
     background: #161013;
     z-index: 1;
+
+    @media (max-width: 1430px) {
+      display: none;
+    }
   }
 `;
 
