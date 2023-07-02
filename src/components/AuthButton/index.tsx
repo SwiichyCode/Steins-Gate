@@ -1,12 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
 type Props = {
-  text?: string;
+  text?: string | null;
   backgroundcolor: string;
   color: string;
-  icon?: string | JSX.Element;
+  icon?: string | JSX.Element | null;
   href: string;
   onClick?: () => void;
 };
@@ -37,6 +36,10 @@ const Container = styled.button<{ backgroundcolor: string }, { color: string }>`
   a {
     text-decoration: none;
     color: ${({ color }) => color};
+
+    @media (max-width: 1180px) {
+      height: 20px;
+    }
   }
 `;
 

@@ -7,12 +7,21 @@ const Container = styled.footer`
   position: fixed;
   left: 64px;
   bottom: 64px;
+
+  a {
+    color: #f8f7f9;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #dc143c;
+    }
+  }
 `;
 
 export default function FooterLink() {
   return (
     <Container>
-      <IconContext.Provider value={{ color: "#F8F7F9", size: "24px" }}>
+      <IconContext.Provider value={{ size: "24px" }}>
         <Link href="https://discord.gg/jxF7XVeNTK" target="_blank">
           <BsDiscord />
         </Link>

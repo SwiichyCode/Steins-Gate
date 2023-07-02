@@ -8,4 +8,8 @@ export const Container = styled.div`
   align-items: center;
   padding: 0 64px;
   color: #f8f7f9;
+
+  @media (max-width: 1180px) {
+    padding: 0 32px;
+  }
 `;

@@ -12,6 +12,10 @@ export const Container = styled.section`
     text-transform: uppercase;
     line-height: 1.5;
     font-family: "Anton", sans-serif;
+
+    @media (max-width: 1180px) {
+      font-size: 64px;
+    }
   }
 
   p {
@@ -19,13 +23,17 @@ export const Container = styled.section`
     line-height: 1.4;
     color: #fff;
     margin-bottom: 80px;
+
+    @media (max-width: 1180px) {
+      font-size: 18px;
+      margin-bottom: 64px;
+    }
   }
 
   button {
     width: auto;
     height: 63px;
     border: none;
-    /* box-shadow: 0px 10px 42px -3px rgba(220, 20, 60, 0.7); */
     font-family: "Anton", sans-serif;
     font-size: 24px;
     color: #f8f7f9;
@@ -35,6 +43,12 @@ export const Container = styled.section`
     letter-spacing: 1px;
     padding: 0 32px;
     transition: all 0.2s ease-in-out;
+
+    @media (max-width: 1180px) {
+      font-size: 18px;
+      height: 48px;
+      padding: 0 24px;
+    }
 
     &:hover {
       box-shadow: 0px 10px 42px -3px rgba(220, 20, 60, 0.7);
