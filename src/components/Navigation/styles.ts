@@ -5,6 +5,11 @@ export const Container = styled.nav`
   text-transform: uppercase;
   font-family: "Anton", sans-serif;
 
+  //Temporary
+  @media (max-width: 870px) {
+    display: none;
+  }
+
   ul {
     display: flex;
     gap: 32px;

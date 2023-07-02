@@ -13,3 +13,11 @@ export const Container = styled.div`
     padding: 0 32px;
   }
 `;
+
+export const HamburgerBtn = styled.button`
+  border: none;
+  background: transparent;
+  color: #f8f7f9;
+  cursor: pointer;
+  z-index: 100;
+`;

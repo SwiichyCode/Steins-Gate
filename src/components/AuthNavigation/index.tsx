@@ -13,6 +13,11 @@ const Container = styled.ul`
   @media (max-width: 1180px) {
     gap: 16px;
   }
+
+  //Temporary
+  @media (max-width: 870px) {
+    display: none;
+  }
 `;
 
 export default function AuthNavigation() {

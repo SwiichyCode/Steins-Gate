@@ -10,6 +10,11 @@ export const Container = styled.section`
     padding: 164px 32px;
   }
 
+  @media (max-width: 870px) {
+    max-width: max-content;
+    box-sizing: border-box;
+  }
+
   h1 {
     font-size: 80px;
     color: #dc143c;
