@@ -1,12 +1,14 @@
+import { useSidebarStore } from "@/stores/sidebarStore";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.div<{ sidebar: boolean }>`
   position: relative;
   height: 100vh;
   background-image: url("/background_3.jpg");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
+  overflow: ${({ sidebar }) => (sidebar ? "hidden" : "auto")};
 
   &::after {
     content: "";
@@ -24,10 +26,12 @@ const Container = styled.div`
   }
 `;
 
-export default function HomeLayout({
-  children,
-}: {
+type Props = {
   children: React.ReactNode;
-}) {
-  return <Container>{children}</Container>;
+};
+
+export default function HomeLayout({ children }: Props) {
+  const sidebar = useSidebarStore((state) => state.sidebar);
+
+  return <Container sidebar={sidebar}>{children}</Container>;
 }

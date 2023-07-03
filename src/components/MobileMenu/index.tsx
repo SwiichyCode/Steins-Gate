@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
 
 const slideIn = keyframes`
@@ -19,25 +18,23 @@ const shrinkOut = keyframes`
   }
 `;
 
-const Container = styled.div<{ navbarOpen: boolean }>`
+const Container = styled.div<{ sidebar: boolean }>`
   position: absolute;
-  right: ${({ navbarOpen }) => (navbarOpen ? "0" : "-100%")};
+  right: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   top: 0;
   display: flex;
-  width: ${({ navbarOpen }) => (navbarOpen ? "40%" : "0")};
+  width: ${({ sidebar }) => (sidebar ? "40%" : "0")};
   height: 100vh;
   background: #161013;
-  animation: ${({ navbarOpen }) => (navbarOpen ? slideIn : shrinkOut)} 0.3s
+  animation: ${({ sidebar }) => (sidebar ? slideIn : shrinkOut)} 0.3s
     ease-in-out;
   overflow: hidden;
 `;
 
 type Props = {
-  navbarOpen: boolean;
+  sidebar: boolean;
 };
 
-export default function MobileMenu({ navbarOpen }: Props) {
-  // Find other solution for remove scroll if navbarOpen
-
-  return navbarOpen && <Container navbarOpen={navbarOpen}></Container>;
+export default function MobileMenu({ sidebar }: Props) {
+  return sidebar && <Container sidebar={sidebar}></Container>;
 }
