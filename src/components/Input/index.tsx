@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Label } from "../Label";
 import { InputProps } from "./types";
 import * as S from "./styles";
@@ -15,6 +16,8 @@ export const Input = ({
   type,
   required,
 }: InputProps) => {
+  const [isPlaceholderActive, setPlaceholderActive] = useState(true);
+
   return (
     <S.Container maxW={maxW}>
       <S.LabelWrapper>
@@ -25,9 +28,10 @@ export const Input = ({
         <S.StyledInput
           name={name}
           value={value}
-          placeholder={placeholder}
-          onChange={onChange}
+          placeholder={isPlaceholderActive ? placeholder : ""}
+          onClick={() => setPlaceholderActive(false)}
           defaultValue={defaultValue}
+          onChange={onChange}
           type={type}
           {...register?.(name as string, { required: required })}
         />

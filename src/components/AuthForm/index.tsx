@@ -67,7 +67,7 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
           labelText="Pseudo"
           name="pseudo"
           type="text"
-          placeholder="Swiichy"
+          placeholder="Pseudo"
           register={register}
         />
       )}
