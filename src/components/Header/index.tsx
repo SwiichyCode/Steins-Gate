@@ -23,7 +23,7 @@ export default function Header() {
         </S.HamburgerBtn>
       )}
 
-      <MobileMenu sidebar={sidebar} />
+      <MobileMenu sidebar={sidebar} toggleSidebar={toggleSidebar} />
     </S.Container>
   );
 }
