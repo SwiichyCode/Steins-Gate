@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
 
 const slideIn = keyframes`
@@ -36,11 +37,7 @@ type Props = {
 };
 
 export default function MobileMenu({ navbarOpen }: Props) {
-  if (navbarOpen) {
-    document.body.classList.add("no-scroll");
-  } else {
-    document.body.classList.remove("no-scroll");
-  }
+  // Find other solution for remove scroll if navbarOpen
 
   return navbarOpen && <Container navbarOpen={navbarOpen}></Container>;
 }
