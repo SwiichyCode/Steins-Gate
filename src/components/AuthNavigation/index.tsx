@@ -4,8 +4,9 @@ import { useWindowSize } from "usehooks-ts";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { BiUser, BiUserPlus } from "react-icons/bi";
+import { useSidebarStore } from "@/stores/sidebarStore";
 
-const Container = styled.ul`
+const Container = styled.ul<{ sidebar: boolean }>`
   display: flex;
   gap: 32px;
   z-index: 100;
@@ -21,9 +22,10 @@ const Container = styled.ul`
 `;
 
 export default function AuthNavigation() {
+  const sidebar = useSidebarStore((state) => state.sidebar);
   const { width } = useWindowSize();
   return (
-    <Container>
+    <Container sidebar={sidebar}>
       <AuthButton
         text={width < 1180 ? null : "Connexion"}
         backgroundcolor="rgba(248, 247, 249, 0.50)"

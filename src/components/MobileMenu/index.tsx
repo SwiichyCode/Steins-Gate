@@ -1,19 +1,8 @@
 import { useRef } from "react";
-import { useOnClickOutside } from "usehooks-ts";
-import styled from "styled-components";
-
-const Container = styled.div<{ sidebar: boolean }>`
-  position: absolute;
-  right: ${({ sidebar }) => (sidebar ? "0" : "-300px")};
-  top: 0;
-  display: flex;
-  width: ${({ sidebar }) => (sidebar ? "300px" : "0")};
-  height: 100vh;
-  background: #161013;
-  opacity: ${({ sidebar }) => (sidebar ? "1" : "0")};
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-`;
+import { useOnClickOutside, useWindowSize } from "usehooks-ts";
+import { BiUser, BiUserPlus } from "react-icons/bi";
+import AuthButton from "../AuthButton";
+import * as S from "./styles";
 
 type Props = {
   sidebar: boolean;
@@ -21,6 +10,7 @@ type Props = {
 };
 
 export default function MobileMenu({ sidebar, toggleSidebar }: Props) {
+  const { width } = useWindowSize();
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = () => {
@@ -31,5 +21,29 @@ export default function MobileMenu({ sidebar, toggleSidebar }: Props) {
 
   useOnClickOutside(ref, handleClickOutside);
 
-  return <Container ref={ref} sidebar={sidebar}></Container>;
+  return (
+    width < 870 && (
+      <S.Container ref={ref} sidebar={sidebar} width={width}>
+        <S.NavbarHeader>
+          <AuthButton
+            icon={<BiUser size={20} />}
+            backgroundcolor="rgba(248, 247, 249, 0.50)"
+            color="#f8f7f9"
+            href="/login"
+          />
+          <AuthButton
+            icon={<BiUserPlus size={20} />}
+            backgroundcolor="#DC143C"
+            color="#f8f7f9"
+            href="/login"
+          />
+        </S.NavbarHeader>
+        <S.NavbarLinks>
+          <S.NavbarLink href="/">Accueil</S.NavbarLink>
+          <S.NavbarLink href="/about">A propos</S.NavbarLink>
+          <S.NavbarLink href="/contact">Contact</S.NavbarLink>
+        </S.NavbarLinks>
+      </S.Container>
+    )
+  );
 }
