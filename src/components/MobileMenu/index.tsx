@@ -1,33 +1,16 @@
-import styled, { keyframes } from "styled-components";
-
-const slideIn = keyframes`
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const shrinkOut = keyframes`
-  from {
-    transform: translateX(0) scale(1);
-  }
-  to {
-    transform: translateX(100%) scale(0);
-  }
-`;
+import styled from "styled-components";
 
 const Container = styled.div<{ sidebar: boolean }>`
   position: absolute;
-  right: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+  right: ${({ sidebar }) => (sidebar ? "0" : "-300px")};
   top: 0;
   display: flex;
-  width: ${({ sidebar }) => (sidebar ? "40%" : "0")};
+  width: ${({ sidebar }) => (sidebar ? "300px" : "0")};
+  min-width: ${({ sidebar }) => (sidebar ? "300px" : "0")};
   height: 100vh;
   background: #161013;
-  animation: ${({ sidebar }) => (sidebar ? slideIn : shrinkOut)} 0.3s
-    ease-in-out;
+  opacity: ${({ sidebar }) => (sidebar ? "1" : "0")};
+  transition: all 0.3s ease-in-out;
   overflow: hidden;
 `;
 
@@ -36,5 +19,5 @@ type Props = {
 };
 
 export default function MobileMenu({ sidebar }: Props) {
-  return sidebar && <Container sidebar={sidebar}></Container>;
+  return <Container sidebar={sidebar}></Container>;
 }

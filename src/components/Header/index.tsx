@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdClose } from "react-icons/md";
 import { useWindowSize } from "usehooks-ts";

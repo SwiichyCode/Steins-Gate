@@ -1,14 +1,16 @@
-import { useSidebarStore } from "@/stores/sidebarStore";
 import styled from "styled-components";
 
-const Container = styled.div<{ sidebar: boolean }>`
+const Container = styled.div`
   position: relative;
   height: 100vh;
   background-image: url("/background_3.jpg");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
-  overflow: ${({ sidebar }) => (sidebar ? "hidden" : "auto")};
+
+  @media (max-width: 870px) {
+    overflow: hidden;
+  }
 
   &::after {
     content: "";
@@ -31,7 +33,5 @@ type Props = {
 };
 
 export default function HomeLayout({ children }: Props) {
-  const sidebar = useSidebarStore((state) => state.sidebar);
-
-  return <Container sidebar={sidebar}>{children}</Container>;
+  return <Container>{children}</Container>;
 }
