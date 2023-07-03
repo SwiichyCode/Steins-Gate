@@ -1,7 +1,7 @@
 import axios from "axios";
 import API_URL from "@/constants/api_url";
 
-const fromLocalHost = true;
+const fromLocalHost = false;
 
 const api_url = fromLocalHost
   ? "http://localhost:8080/api/auth/"
