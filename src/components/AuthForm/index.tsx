@@ -1,25 +1,11 @@
-import styled from "styled-components";
 import AuthService from "@/services/auth.service";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Input } from "../Input";
+import Input from "../Input";
 import Button from "../Button";
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-
-  a {
-    color: #f8f7f9;
-  }
-`;
-
-const SuccessMessage = styled.p`
-  color: #2edb3d;
-`;
+import * as S from "./styles";
 
 interface AuthInputs {
   pseudo?: string;
@@ -40,20 +26,20 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
     try {
       if (isRegister) {
         if (data.pseudo) {
-          await AuthService.register(data.pseudo, data.email, data.password);
+          AuthService.register(data.pseudo, data.email, data.password);
           setSuccessMessage("Votre compte a bien été créé");
 
           setTimeout(() => {
             router.push("/login");
-          }, 2000);
+          }, 1000);
         }
       } else {
         await AuthService.login(data.email, data.password);
         setSuccessMessage("Vous êtes connecté");
 
         setTimeout(() => {
-          router.push("/");
-        }, 2000);
+          router.push("/home");
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
@@ -61,7 +47,7 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <S.Form onSubmit={handleSubmit(onSubmit)}>
       {isRegister && (
         <Input
           labelText="Pseudo"
@@ -91,13 +77,13 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
         type="submit"
       />
 
-      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {successMessage && <S.SuccessMessage>{successMessage}</S.SuccessMessage>}
 
       <Link href={isRegister ? "/login" : "/register"}>
         {isRegister
           ? "Déjà inscrit ? Connectez-vous"
           : "Pas encore inscrit ? Inscrivez-vous"}
       </Link>
-    </Form>
+    </S.Form>
   );
 }

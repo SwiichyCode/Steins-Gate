@@ -32,6 +32,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function HomeLayout({ children }: Props) {
+export default function LandingLayout({ children }: Props) {
   return <Container>{children}</Container>;
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import API_URL from "@/constants/api_url";
 
-const fromLocalHost = false;
+const fromLocalHost = true;
 
 const api_url = fromLocalHost
   ? "http://localhost:8080/api/auth/"
@@ -33,10 +33,15 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
+const getCurrentUser = () => {
+  return JSON.parse(localStorage.getItem("user") || "{}");
+};
+
 const AuthService = {
   register,
   login,
   logout,
+  getCurrentUser,
 };
 
 export default AuthService;

@@ -1,16 +1,17 @@
-import HomeLayout from "@/layouts/HomeLayout";
+import React from "react";
+import LandingLayout from "@/layouts/LandingLayout";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FooterLink from "@/components/FooterLink";
 import OtherGames from "@/components/OtherGames";
 
-export default function Home() {
+export default function Landing() {
   return (
-    <HomeLayout>
+    <LandingLayout>
       <Header />
       <Hero />
       <OtherGames />
       <FooterLink />
-    </HomeLayout>
+    </LandingLayout>
   );
 }

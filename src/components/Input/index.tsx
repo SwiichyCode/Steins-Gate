@@ -3,7 +3,7 @@ import { Label } from "../Label";
 import { InputProps } from "./types";
 import * as S from "./styles";
 
-export const Input = ({
+export default function Input({
   name,
   labelText,
   placeholder,
@@ -15,7 +15,7 @@ export const Input = ({
   maxW,
   type,
   required,
-}: InputProps) => {
+}: InputProps) {
   const [isPlaceholderActive, setPlaceholderActive] = useState(true);
 
   return (
@@ -38,4 +38,4 @@ export const Input = ({
       </S.Wrapper>
     </S.Container>
   );
-};
+}

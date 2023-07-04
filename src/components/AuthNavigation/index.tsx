@@ -5,39 +5,26 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { BiUser, BiUserPlus } from "react-icons/bi";
 import { useSidebarStore } from "@/stores/sidebarStore";
-
-const Container = styled.ul<{ sidebar: boolean }>`
-  display: flex;
-  gap: 32px;
-  z-index: 100;
-
-  @media (max-width: 1180px) {
-    gap: 16px;
-  }
-
-  //Temporary
-  @media (max-width: 870px) {
-    display: none;
-  }
-`;
+import { PAGE_URL } from "@/constants/page_url";
+import * as S from "./styles";
 
 export default function AuthNavigation() {
   const sidebar = useSidebarStore((state) => state.sidebar);
   const { width } = useWindowSize();
   return (
-    <Container sidebar={sidebar}>
+    <S.Container sidebar={sidebar}>
       <AuthButton
         text={width < 1180 ? null : "Connexion"}
         backgroundcolor="rgba(248, 247, 249, 0.50)"
         color="#f8f7f9"
-        href="/login"
+        href={PAGE_URL.LOGIN}
         icon={width < 1180 ? <BiUser size={20} /> : null}
       />
       <AuthButton
         text={width < 1180 ? null : "Inscription"}
         backgroundcolor="#DC143C"
         color="#f8f7f9"
-        href="/register"
+        href={PAGE_URL.REGISTER}
         icon={width < 1180 ? <BiUserPlus size={20} /> : null}
       />
 
@@ -65,6 +52,6 @@ export default function AuthNavigation() {
             onClick={() => signOut()}
           />
         </> */}
-    </Container>
+    </S.Container>
   );
 }
