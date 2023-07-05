@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { User } from "@/types/user";
 
-const Container = styled.span`
+const Container = styled.span<{ currentUser: any }>`
   text-transform: uppercase;
   font-size: 2rem;
   font-family: "Anton", sans-serif;
@@ -10,13 +11,17 @@ const Container = styled.span`
 
   a {
     text-decoration: none;
-    color: #f8f7f9;
+    color: ${({ currentUser }) => (currentUser ? "black" : "#f8f7f9")};
   }
 `;
 
-export default function Logo() {
+type Props = {
+  currentUser: User | null;
+};
+
+export default function Logo({ currentUser }: Props) {
   return (
-    <Container>
+    <Container currentUser={currentUser}>
       <Link href="/">Steins Gate</Link>
     </Container>
   );

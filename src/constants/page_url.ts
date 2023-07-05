@@ -5,5 +5,6 @@ export const PAGE_URL = {
   REGISTER: "/register",
   HOME: "/home",
   PROFILE: "/profile",
+  EVENEMENTS: "/evenements",
   ADMIN: "/admin",
 };

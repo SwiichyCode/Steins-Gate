@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { User } from "@/types/user";
 
-export const Container = styled.nav`
+export const Container = styled.nav<{ currentUser: User | null }>`
   font-size: 24px;
   text-transform: uppercase;
   font-family: "Anton", sans-serif;
@@ -19,13 +20,13 @@ export const Container = styled.nav`
     position: relative;
     text-decoration: none;
     letter-spacing: 1px;
-    color: #f8f7f9;
+    color: ${({ currentUser }) => (currentUser ? "#000" : "#f8f7f9")};
 
     &::after {
       content: "";
       display: block;
       height: 0.2rem;
-      background: #f8f7f9;
+      background: ${({ currentUser }) => (currentUser ? "#000" : "#f8f7f9")};
       transform: scale(0);
       transition: transform 0.6s;
       transform-origin: right;
