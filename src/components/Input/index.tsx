@@ -15,13 +15,16 @@ export default function Input({
   maxW,
   type,
   required,
+  theme = "light",
 }: InputProps) {
   const [isPlaceholderActive, setPlaceholderActive] = useState(true);
 
   return (
     <S.Container maxW={maxW}>
       <S.LabelWrapper>
-        {labelText && <Label labelFor={name} labelText={labelText} />}
+        {labelText && (
+          <Label labelFor={name} labelText={labelText} theme="light" />
+        )}
         {error && <S.Error>{error}</S.Error>}
       </S.LabelWrapper>
       <S.Wrapper>
@@ -34,6 +37,7 @@ export default function Input({
           onChange={onChange}
           type={type}
           {...register?.(name as string, { required: required })}
+          theme={theme}
         />
       </S.Wrapper>
     </S.Container>

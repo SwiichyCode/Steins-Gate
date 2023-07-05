@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   gap: 8px;
 `;
 
-export const LabelWrapper = styled.div`
+export const LabelWrapper = styled.div<Partial<InputProps>>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,9 +37,9 @@ export const StyledInput = styled.input<Partial<InputProps>>`
   line-height: 2.3rem;
   padding: 8px 16px 9px 16px;
   border-radius: 8px;
-  color: #f8f7f9;
-  border: ${({ error }) =>
-    error ? "1px solid var(--color-red)" : "1px solid #f8f7f9;"};
+  color: ${({ theme }) => (theme === "light" ? "black" : "white")};
+  border: ${({ theme }) =>
+    theme === "light" ? "1px solid black" : "1px solid #f8f7f9;"};
   &:focus {
     outline: ${({ error }) =>
       error ? "1px solid var(--color-red)" : "1px solid var(--color-purple)"};
@@ -53,10 +53,9 @@ export const StyledInput = styled.input<Partial<InputProps>>`
   }
 `;
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.label<Partial<InputProps>>`
   font-weight: var(--font-bold);
   font-size: var(--fz-lg);
   line-height: 1.5rem;
-  color: var(--color-grey);
   text-transform: capitalize;
 `;

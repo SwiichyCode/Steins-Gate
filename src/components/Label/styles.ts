@@ -9,4 +9,5 @@ export const StyledLabel = styled.label<Partial<LabelProps>>`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-family: "Anton", sans-serif;
+  color: ${({ theme }) => (theme === "light" ? "black" : "white")};
 `;

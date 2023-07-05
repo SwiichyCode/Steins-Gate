@@ -27,7 +27,7 @@ export default function FooterLink() {
   return (
     <Container>
       <IconContext.Provider value={{ size: "24px" }}>
-        <Link href="https://discord.gg/jxF7XVeNTK" target="_blank">
+        <Link href="https://discord.gg/SUVnuBWm" target="_blank">
           <BsDiscord />
         </Link>
       </IconContext.Provider>

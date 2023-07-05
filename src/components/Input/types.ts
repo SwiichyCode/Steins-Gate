@@ -10,4 +10,5 @@ export interface InputProps {
   maxW?: number;
   type: string;
   required?: boolean;
+  theme?: "light" | "dark";
 }
