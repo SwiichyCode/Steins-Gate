@@ -4,6 +4,7 @@ import Input from "@/components/Input";
 import TextArea from "@/components/TextArea";
 import AuthButton from "../AuthButton";
 import Button from "../Button";
+import RecrutementService from "@/services/recruitment.service";
 
 const Container = styled.form`
   width: 500px;
@@ -33,7 +34,16 @@ export default function RecrutementForm() {
   } = useForm<AuthInputs>();
 
   const onSubmit: SubmitHandler<AuthInputs> = async (data) => {
-    console.log(data);
+    try {
+      await RecrutementService.postRecrutement(
+        data.pseudo,
+        data.classe,
+        data.presentation
+      );
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
