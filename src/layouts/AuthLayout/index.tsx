@@ -1,3 +1,4 @@
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 import Logo from "@/components/Logo";
 import AuthCard from "@/components/AuthCard";
 import AuthForm from "@/components/AuthForm";
@@ -9,10 +10,11 @@ type Props = {
 };
 
 export default function AuthLayout({ title, isRegister }: Props) {
+  const currentUser = useCurrentUser();
   return (
     <S.Container>
       <S.LogoWrapper>
-        <Logo />
+        <Logo currentUser={currentUser} />
       </S.LogoWrapper>
       <S.MainWrapper>
         <AuthCard title={title}>
