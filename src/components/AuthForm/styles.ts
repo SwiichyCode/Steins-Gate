@@ -13,3 +13,7 @@ export const Form = styled.form`
 export const SuccessMessage = styled.p`
   color: #2edb3d;
 `;
+
+export const ErrorMessage = styled.p`
+  color: #ed2d2d;
+`;

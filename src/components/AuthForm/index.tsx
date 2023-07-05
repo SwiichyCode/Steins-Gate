@@ -18,15 +18,22 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<AuthInputs>();
+  const [isLoading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<AuthInputs> = async (data) => {
+    setLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
     try {
       if (isRegister) {
         if (data.pseudo) {
-          AuthService.register(data.pseudo, data.email, data.password);
+          await AuthService.register(data.pseudo, data.email, data.password);
           setSuccessMessage("Votre compte a bien été créé");
 
           setTimeout(() => {
@@ -43,6 +50,12 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
       }
     } catch (error) {
       console.log(error);
+      setErrorMessage(
+        "Une erreur s'est produite lors de la connexion ou de l'inscription"
+      );
+    } finally {
+      setLoading(false);
+      reset(); // Réinitialiser les champs du formulaire
     }
   };
 
@@ -72,12 +85,20 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
         register={register}
       />
       <Button
-        text={isRegister ? "S'inscrire" : "Se connecter"}
+        text={
+          isLoading
+            ? "Chargement..."
+            : isRegister
+            ? "S'inscrire"
+            : "Se connecter"
+        }
         size="medium"
         type="submit"
+        disabled={isLoading}
       />
 
       {successMessage && <S.SuccessMessage>{successMessage}</S.SuccessMessage>}
+      {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
 
       <Link href={isRegister ? "/login" : "/register"}>
         {isRegister

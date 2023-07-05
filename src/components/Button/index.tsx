@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-type Props = {
-  text: string;
-  size?: "small" | "medium" | "large";
-  onClick?: () => void;
-  type?: "button" | "submit" | "reset";
-};
-
 const StyledButton = styled.button<{ size?: "small" | "medium" | "large" }>`
   width: auto;
   height: ${({ size }) => {
@@ -38,9 +31,17 @@ const StyledButton = styled.button<{ size?: "small" | "medium" | "large" }>`
   }
 `;
 
-export default function Button({ text, size, onClick, type }: Props) {
+type Props = {
+  text: string;
+  size?: "small" | "medium" | "large";
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+};
+
+export default function Button({ text, size, onClick, type, disabled }: Props) {
   return (
-    <StyledButton size={size} onClick={onClick} type={type}>
+    <StyledButton size={size} onClick={onClick} type={type} disabled={disabled}>
       {text}
     </StyledButton>
   );
