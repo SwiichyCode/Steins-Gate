@@ -13,8 +13,9 @@ export const StyledTextArea = styled.textarea<{ theme: "light" | "dark" }>`
   line-height: 2.3rem;
   color: var(--color-black);
   color: ${({ theme }) => (theme === "light" ? "black" : "white")};
-  border: 1px solid rgba(130, 143, 163, 0.25);
-  border-radius: var(--borderR-lg);
+  border: ${({ theme }) =>
+    theme === "light" ? "1px solid black" : "1px solid white"};
+  border-radius: 8px;
   resize: none;
   padding: 0.8rem 2.5rem 0 1.6rem;
   background: transparent;

@@ -6,6 +6,7 @@ interface TextAreaProps {
   labelText: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   value?: string;
+  defaultValue?: string;
   register?: any;
   required?: boolean;
   name: string;
@@ -17,6 +18,7 @@ export default function TextArea({
   onChange,
   register,
   required,
+  defaultValue,
   name,
   theme = "light",
 }: TextAreaProps) {
@@ -27,6 +29,7 @@ export default function TextArea({
         onChange={onChange}
         {...register?.(name as string, { required: required })}
         theme={theme}
+        defaultValue={defaultValue}
       />
     </S.Container>
   );

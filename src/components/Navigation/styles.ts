@@ -22,6 +22,10 @@ export const Container = styled.nav<{ currentUser: User | null }>`
     letter-spacing: 1px;
     color: ${({ currentUser }) => (currentUser ? "#000" : "#f8f7f9")};
 
+    &.active {
+      color: #dc143c;
+    }
+
     &::after {
       content: "";
       display: block;

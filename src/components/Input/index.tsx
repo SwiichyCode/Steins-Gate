@@ -7,15 +7,12 @@ export default function Input({
   name,
   labelText,
   placeholder,
-  defaultValue,
-  onChange,
   error,
-  value,
   register,
   maxW,
-  type,
-  required,
+  value,
   theme = "light",
+  ...props
 }: InputProps) {
   const [isPlaceholderActive, setPlaceholderActive] = useState(true);
 
@@ -23,21 +20,18 @@ export default function Input({
     <S.Container maxW={maxW}>
       <S.LabelWrapper>
         {labelText && (
-          <Label labelFor={name} labelText={labelText} theme="light" />
+          <Label labelFor={name} labelText={labelText} theme={theme} />
         )}
         {error && <S.Error>{error}</S.Error>}
       </S.LabelWrapper>
       <S.Wrapper>
         <S.StyledInput
-          name={name}
-          value={value}
           placeholder={isPlaceholderActive ? placeholder : ""}
           onClick={() => setPlaceholderActive(false)}
-          defaultValue={defaultValue}
-          onChange={onChange}
-          type={type}
-          {...register?.(name as string, { required: required })}
           theme={theme}
+          value={value}
+          {...register?.(name as string)}
+          {...props}
         />
       </S.Wrapper>
     </S.Container>

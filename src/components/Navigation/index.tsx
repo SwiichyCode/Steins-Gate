@@ -1,11 +1,15 @@
 import Link from "next/link";
-import * as S from "./styles";
+import { useRouter } from "next/router";
 import { PAGE_URL } from "@/constants/page_url";
 import { User } from "@/types/user";
+import * as S from "./styles";
 
 const landingLinks = [
   { href: PAGE_URL.LANDING, label: "ACCUEIL" },
-  { href: PAGE_URL.RECRUTEMENT, label: "RECRUTEMENT" },
+  {
+    href: PAGE_URL.RECRUTEMENT,
+    label: "RECRUTEMENT",
+  },
 ];
 
 const homeLinks = [
@@ -20,6 +24,8 @@ type Props = {
 };
 
 export default function Navigation({ currentUser }: Props) {
+  const router = useRouter();
+
   return (
     <S.Container currentUser={currentUser}>
       <ul>
@@ -31,7 +37,12 @@ export default function Navigation({ currentUser }: Props) {
             ))
           : landingLinks.map(({ href, label }) => (
               <li key={`${href}${label}`}>
-                <Link href={href}>{label}</Link>
+                <Link
+                  href={href}
+                  className={router.pathname === href ? "active" : undefined}
+                >
+                  {label}
+                </Link>
               </li>
             ))}
       </ul>

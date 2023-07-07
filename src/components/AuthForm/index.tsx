@@ -68,6 +68,7 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
           type="text"
           placeholder="Pseudo"
           register={register}
+          theme="dark"
         />
       )}
       <Input
@@ -76,6 +77,7 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
         type="email"
         placeholder="emailexemple@gmail.com"
         register={register}
+        theme="dark"
       />
       <Input
         labelText="Mot de passe"
@@ -83,6 +85,7 @@ export default function AuthForm({ isRegister }: { isRegister: boolean }) {
         type="password"
         placeholder="********"
         register={register}
+        theme="dark"
       />
       <Button
         text={

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div<{ router: string }>`
   position: relative;
   height: 100vh;
   background-image: url("/background_3.jpg");
   background-size: cover;
-  background-position: top;
+  background-position: ${({ router }) =>
+    router === "/recrutement" ? "top right" : "top"};
   background-repeat: no-repeat;
 
   @media (max-width: 870px) {
@@ -15,9 +16,11 @@ const Container = styled.div`
   &::after {
     content: "";
     position: absolute;
-    right: 0;
+    right: ${({ router }) => (router === "/" ? "0" : null)};
+    left: ${({ router }) => (router === "/recrutement" ? "0" : null)};
     top: 0;
     width: 25%;
+    width: ${({ router }) => (router === "/" ? "25%" : "20%")};
     height: 100%;
     background: #161013;
     z-index: 1;
@@ -27,11 +30,3 @@ const Container = styled.div`
     }
   }
 `;
-
-type Props = {
-  children: React.ReactNode;
-};
-
-export default function LandingLayout({ children }: Props) {
-  return <Container>{children}</Container>;
-}

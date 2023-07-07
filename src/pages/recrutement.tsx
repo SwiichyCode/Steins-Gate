@@ -1,20 +1,12 @@
-import styled from "styled-components";
-import RecrutementLayout from "@/layouts/RecrutementLayout";
-import GuildRules from "@/components/GuildRules";
-import RecrutementForm from "@/components/RecrutementForm";
-
-const RecrutementWrapper = styled.section`
-  display: flex;
-  border-radius: 10px;
-`;
+import LandingLayout from "@/layouts/LandingLayout";
+import Header from "@/components/Header";
+import MultiStepForm from "@/components/MultiStepForm";
 
 export default function Recrutement() {
   return (
-    <RecrutementLayout>
-      <RecrutementWrapper>
-        <GuildRules />
-        <RecrutementForm />
-      </RecrutementWrapper>
-    </RecrutementLayout>
+    <LandingLayout>
+      <Header />
+      <MultiStepForm />
+    </LandingLayout>
   );
 }
