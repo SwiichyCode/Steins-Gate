@@ -71,7 +71,7 @@ export default function InformationsForm() {
         )}
       />
 
-      <FormStepNavigator onSubmit={onSubmit} isForm={true} />
+      <FormStepNavigator isForm={true} />
     </Form>
   );
 }
