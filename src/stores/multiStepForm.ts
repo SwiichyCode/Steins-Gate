@@ -3,15 +3,13 @@ import { create } from "zustand";
 export type Data = {
   presentation: {
     pseudo: string;
-    description: string;
+    disponibilites: string;
     discord: string;
   };
-  classe: [
-    {
-      name: string;
-      ilvl: number;
-    }
-  ];
+  personnages: {
+    classe: string;
+    ilvl: number;
+  }[];
 };
 
 interface MultiStepFormStore {
@@ -22,19 +20,19 @@ interface MultiStepFormStore {
   nextStep: () => void;
   prevStep: () => void;
   setPresentation: (presentation: Data["presentation"]) => void;
-  setClasse: (classe: Data["classe"]) => void;
+  setPersonnages: (classe: Data["personnages"]) => void;
 }
 
 export const useMultiStepFormStore = create<MultiStepFormStore>()((set) => ({
   data: {
     presentation: {
       pseudo: "",
-      description: "",
+      disponibilites: "",
       discord: "",
     },
-    classe: [
+    personnages: [
       {
-        name: "",
+        classe: "",
         ilvl: 0,
       },
     ],
@@ -46,5 +44,6 @@ export const useMultiStepFormStore = create<MultiStepFormStore>()((set) => ({
   prevStep: () => set((state) => ({ step: state.step - 1 })),
   setPresentation: (presentation) =>
     set((state) => ({ data: { ...state.data, presentation } })),
-  setClasse: (classe) => set((state) => ({ data: { ...state.data, classe } })),
+  setPersonnages: (personnages) =>
+    set((state) => ({ data: { ...state.data, personnages } })),
 }));

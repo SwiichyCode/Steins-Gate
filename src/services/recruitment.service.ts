@@ -7,15 +7,10 @@ const api_url = fromLocalHost
   ? "http://localhost:8080/api/recrutement/"
   : API_URL.api_recrutement;
 
-const postRecrutement = async (
-  pseudo: string,
-  classe: string,
-  presentation: string
-) => {
+const postRecrutement = async (presentation: any, personnages: any) => {
   return axios.post(api_url + "post", {
-    pseudo,
-    classe,
     presentation,
+    personnages,
   });
 };
 

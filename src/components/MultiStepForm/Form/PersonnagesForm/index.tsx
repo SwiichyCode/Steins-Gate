@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray, set } from "react-hook-form";
 import { useMultiStepFormStore } from "@/stores/multiStepForm";
 import FormStepNavigator from "../../FormStepNavigator";
 import { InputPersonnageGenerator } from "@/components/InputPersonnageGenerator";
@@ -13,16 +13,14 @@ export interface AuthInputs {
 }
 
 export default function PersonnagesForm() {
-  const { data, setClasse } = useMultiStepFormStore();
+  const { data, setPersonnages, nextStep } = useMultiStepFormStore();
 
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<AuthInputs>({
-    defaultValues: {
-      personnages: [{ classe: "", ilvl: 0 }],
-    },
+    defaultValues: { personnages: data.personnages },
   });
   const { fields, append, remove } = useFieldArray({
     control,
@@ -30,13 +28,19 @@ export default function PersonnagesForm() {
   });
 
   const onSubmit: SubmitHandler<AuthInputs> = async (data) => {
-    // console.log(fields);
+    const formattedData = data.personnages.map((personnage) => ({
+      classe: personnage.classe,
+      ilvl: personnage.ilvl,
+    }));
 
-    console.log(data.personnages);
+    setPersonnages(formattedData);
+
+    nextStep();
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Personnages</h1>
       <InputPersonnageGenerator
         control={control}
         append={append}
@@ -44,8 +48,7 @@ export default function PersonnagesForm() {
         remove={remove}
       />
 
-      <button type="submit">Submit</button>
-      <FormStepNavigator />
+      <FormStepNavigator isForm={true} />
     </Form>
   );
 }

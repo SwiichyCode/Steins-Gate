@@ -1,55 +1,77 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMultiStepFormStore } from "@/stores/multiStepForm";
-import Input from "@/components/Input";
+import StyledTextField from "@/components/TextField";
 import FormStepNavigator from "../../FormStepNavigator";
 import { Form } from "../../styles";
+import { useEffect } from "react";
 
 interface AuthInputs {
   pseudo: string;
-  description: string;
+  disponibilites: string;
   discord: string;
 }
 
 export default function InformationsForm() {
-  const { data, setPresentation } = useMultiStepFormStore();
+  const { data, setPresentation, nextStep } = useMultiStepFormStore();
+
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<AuthInputs>();
+  } = useForm<AuthInputs>({ defaultValues: data.presentation });
 
   const onSubmit: SubmitHandler<AuthInputs> = async (data) => {
     setPresentation(data);
+
+    nextStep();
   };
+
+  useEffect(() => {
+    reset(data.presentation);
+  }, [data.presentation, reset]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        labelText="Pseudo"
-        register={register}
+      <h1>Informations</h1>
+      <Controller
         name="pseudo"
-        type="text"
-        defaultValue={data.presentation.pseudo}
-        theme="dark"
+        control={control}
+        render={({ field }) => (
+          <StyledTextField
+            label="Pseudo"
+            defaultValue={data.presentation.pseudo}
+            required
+            {...field}
+          />
+        )}
       />
-      <Input
-        labelText="Vos disponibilités"
-        placeholder="3 soirs par semaine (Mercredi, Jeudi, Dimanche)"
-        register={register}
+      <Controller
         name="disponibilites"
-        type="text"
-        theme="dark"
+        control={control}
+        render={({ field }) => (
+          <StyledTextField
+            label="Disponibilités"
+            defaultValue={data.presentation.disponibilites}
+            required
+            {...field}
+          />
+        )}
       />
-      <Input
-        labelText="Discord"
-        register={register}
+      <Controller
         name="discord"
-        type="text"
-        defaultValue={data.presentation.discord}
-        theme="dark"
+        control={control}
+        render={({ field }) => (
+          <StyledTextField
+            label="Discord"
+            defaultValue={data.presentation.discord}
+            required
+            {...field}
+          />
+        )}
       />
-      <FormStepNavigator onSubmit={onSubmit} />
+
+      <FormStepNavigator onSubmit={onSubmit} isForm={true} />
     </Form>
   );
 }

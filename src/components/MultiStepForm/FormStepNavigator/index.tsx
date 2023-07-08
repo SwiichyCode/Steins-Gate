@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Button from "@/components/Button";
 import { useMultiStepFormStore } from "@/stores/multiStepForm";
-import { SubmitHandler } from "react-hook-form";
 
 const FormStepperContainer = styled.div<{ step: number }>`
   width: 100%;
@@ -11,22 +10,14 @@ const FormStepperContainer = styled.div<{ step: number }>`
 `;
 
 type Props = {
-  onSubmit?: SubmitHandler<any>;
+  isForm?: boolean;
 };
 
-export default function FormStepNavigator({ onSubmit }: Props) {
+export default function FormStepNavigator({ isForm }: Props) {
   const { step, nextStep, prevStep, maxStep } = useMultiStepFormStore();
 
-  const handleNextStep = async () => {
-    if (onSubmit) {
-      onSubmit;
-
-      setTimeout(() => {
-        nextStep();
-      }, 1000);
-    } else {
-      nextStep();
-    }
+  const handleNextStep = () => {
+    !isForm && nextStep();
   };
 
   return (
@@ -36,7 +27,7 @@ export default function FormStepNavigator({ onSubmit }: Props) {
       )}
 
       {step === maxStep ? (
-        <Button text="Submit" size="medium" />
+        <Button text="Submit" size="medium" type="submit" />
       ) : (
         <Button
           text="Suivant"

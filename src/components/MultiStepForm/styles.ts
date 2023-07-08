@@ -33,9 +33,10 @@ export const FormLayoutFooter = styled.div<{ step: number }>`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 
   h1 {
     font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
 `;
